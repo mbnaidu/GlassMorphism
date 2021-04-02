@@ -9,8 +9,8 @@ import Navbar from './components/Navbar';
 import Home from './contents/Home';
 import About from './contents/About';
 import Portfolio from './contents/Portfolio';
-import Contact from './contents/Contact';
 import Login from './components/Login'
+import Logout from './contents/Logout';
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -39,8 +39,8 @@ function App() {
     <Route path="/portfolio">
     <Portfolio />
     </Route>
-    <Route path="/contact">
-    <Contact />
+    <Route path="/logout">
+    <Logout />
     </Route>
     <div class="back1 glass" onClick={e => setTheme(
       theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'}
