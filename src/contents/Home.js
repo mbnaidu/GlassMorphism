@@ -11,8 +11,8 @@ class Home extends Component {
             <div>
                 <Navbar />
                 <div className="condiv home">
-                    <h1>Vikalp <mark>Kaushik</mark></h1>
-                    <ReactTypingEffect className="typingeffect" text={['A Full Stack Developer','A UI/UX Designer','A Data Scientist']} speed={100} eraseDelay={900}/>
+                    <h1>Madhu Charlie</h1>
+                    <ReactTypingEffect className="typingeffect" text={['A','B','C']} speed={100} eraseDelay={900}/>
                     <div className="hr_line glass"><div className="hr_inner"></div></div>
                 </div>
             </div>

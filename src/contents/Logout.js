@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import Socialc from '../Styles/Socialc.css'
-import Map from '../img/map.png';
 
 class Logout extends Component {
     render() {

@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Home from './contents/Home';
-import About from './contents/About';
-import Portfolio from './contents/Portfolio';
+import Search from './contents/Search';
+import Registration from './contents/Registration';
 import Login from './components/Login'
 import Logout from './contents/Logout';
 
@@ -33,11 +33,11 @@ function App() {
     <Route exact path="/home">
     <Home />
     </Route>
-    <Route path="/about">
-    <About />
+    <Route path="/search">
+    <Search />
     </Route>
-    <Route path="/portfolio">
-    <Portfolio />
+    <Route path="/registration">
+    <Registration />
     </Route>
     <Route path="/logout">
     <Logout />
