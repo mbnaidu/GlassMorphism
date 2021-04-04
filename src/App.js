@@ -11,6 +11,7 @@ import Search from './contents/Search';
 import Registration from './contents/Registration';
 import Login from './components/Login'
 import Logout from './contents/Logout';
+import 'semantic-ui-css/semantic.min.css'
 
 const GlobalStyle = createGlobalStyle`
   body{
