@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import profilepic from '../img/profile_photo.jpg';
 import Navbar from '../components/Navbar';
 import Example from '../components/example';
