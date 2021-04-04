@@ -42,9 +42,6 @@ function App() {
     <Route path="/logout">
     <Logout />
     </Route>
-    <div class="back1 glass" onClick={e => setTheme(
-      theme.mode === 'dark' ? {mode: 'light'} : {mode: 'dark'}
-    )}><i class={theme.mode === 'dark' ? "fa fa-sun i1" : "fa fa-moon i1"}></i></div>
     </div>
     </Router>
     </>
