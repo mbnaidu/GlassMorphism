@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import '../Styles/Loginc.css'
-import Example from './example';
+import Example from '../components/example';
 
 
 function Login({ history }) {
@@ -18,7 +18,7 @@ function Login({ history }) {
                             Password
                             <input id="password" type="password"></input>
                         </label>
-                        <button type="submit" onClick={() => history.push('/search')}>Login</button>
+                        <button type="submit" onClick={() => history.push('/registration')}>Login</button>
                     </form>
                 </section>
             </nav>

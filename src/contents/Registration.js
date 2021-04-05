@@ -1,7 +1,7 @@
-import { Button, Input, TextField } from '@material-ui/core';
+import { Button, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, TextField } from '@material-ui/core';
 import React, { Component, useState } from 'react';
 import Navbar from '../components/Navbar';
-import Registrationc from '../Styles/Registrationc.css'
+import '../Styles/Registrationc.css'
 
 
 
@@ -9,12 +9,24 @@ function Registration() {
     const [totalMembers,settotalMembers] = useState(1);
     const [rationNumber, setrationNumber] = useState(true);
     const [family, setfamily] = useState([]);
+    const [members,setmembers] = useState([]);
+    const [gender,setgender] = useState([]);
     const createElements = (n)=>{
         for(var i = 1; i <= n; i++){
             family.push(
                 <li>{i}</li>
             );
         }
+    }
+    const finalmembers = (f) => {
+        for(var i=0;i<f.length;i++){
+            if(f[i]!=""){
+                members.push(f[i]);
+            }
+        }
+    }
+    const send = (h) => {
+        gender.push(h)
     }
     var id = 0;
     return (
@@ -74,14 +86,28 @@ function Registration() {
                                 <div>
                                     {createElements(totalMembers)}
                                     {family.map((m)=>{
-                                        var gender = "Gender"
+                                        let name;
+                                        let full = [];
+                                        let store = [];
+                                        const calling = () =>{
+                                            console.log(store)
+                                            if(store!=""){
+                                                full.push(store[store.length-1]);
+                                            }
+                                        }
+                                        const setname = (z)=>{
+                                            if(z!="" && z!="undefined"){
+                                                store.push(z);
+                                            }
+                                        };
+                                        var m = id;
                                         id = id + 1;
                                         return(
                                             <div className="row">
                                                 <div class="agileits-top column">
                                                     <form action="#" method="post">
                                                         <div class="form__group">
-                                                            <input type="input" class="form__field" placeholder="Name" id='ration' required />
+                                                            <input type="input" class="form__field" placeholder="Name" id='ration' required value={name} onChange={event=> setname(event.target.value)} />
                                                             <label for="name" class="form__label">{id} Person</label>
                                                         </div>
                                                         <div class="form__group">
@@ -90,20 +116,23 @@ function Registration() {
                                                         </div>
                                                     </form>
                                                 </div>
-                                                <div className="column">
+                                                <div className="column colu2">
                                                     <br/>
                                                     <br/>
                                                     <br/>
-                                                    <br/>
-                                                    <div class="hover">
-                                                        <span>{gender}</span>
-                                                        <a class="social-link"  target="_blank">
-                                                            <i class="fa fa-male"></i></a><a class="social-link" target="_blank">
-                                                            <i class="fa fa-female"></i>
-                                                        </a>
-                                                    </div>
                                                     <br/>
                                                     <div>
+                                                        <FormControl component="fieldset" onChange={(event)=>{send(event.target.value);calling();finalmembers(full);}}>
+                                                            <FormLabel component="legend">Gender</FormLabel>
+                                                            <RadioGroup aria-label="gender" name="gender1">
+                                                                <FormControlLabel value="female" control={<Radio />} label="Female" />
+                                                                <FormControlLabel value="male" control={<Radio />} label="Male" />
+                                                                <FormControlLabel value="other" control={<Radio />} label="Other" />
+                                                            </RadioGroup>
+                                                        </FormControl>
+                                                    </div>
+                                                    <br/>
+                                                    <div className="column colu3">
                                                         <div className="gener">
                                                             <TextField
                                                                 id="outlined-helperText"
@@ -120,7 +149,7 @@ function Registration() {
                                     })}
                                     <div>
                                         <div class="container">
-                                            <a class="btn cta">SUBMIT</a>
+                                            <a class="btn cta" onClick={()=>{console.log(members,gender)}}>SUBMIT</a>
                                         </div>
                                     </div>
                                 </div>

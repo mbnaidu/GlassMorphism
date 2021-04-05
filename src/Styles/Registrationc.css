@@ -4,6 +4,15 @@
     padding: 10px;
 }
 
+.colu2 {
+    margin-left: -70px;
+}
+
+.colu3 {
+    margin-top: -170px;
+    margin-left: 300px;
+}
+
 /* Clear floats after the columns */
 .row:after {
     content: "";
