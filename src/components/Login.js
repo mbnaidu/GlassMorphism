@@ -2,7 +2,6 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import '../Styles/Loginc.css'
 import Example from './example';
-import Navbar from './Navbar';
 
 
 function Login({ history }) {
@@ -19,7 +18,7 @@ function Login({ history }) {
                             Password
                             <input id="password" type="password"></input>
                         </label>
-                        <button type="submit" onClick={() => history.push('/home')}>Login</button>
+                        <button type="submit" onClick={() => history.push('/search')}>Login</button>
                     </form>
                 </section>
             </nav>

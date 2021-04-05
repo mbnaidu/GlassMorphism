@@ -25,7 +25,6 @@ class Navbar extends Component {
             <img src={profilepic} className="profilepic"></img>
             <h2>MADHU CHARLIE</h2>
             <ul>
-            <Navitem item="HOME" tolink="/home"  activec={this.activeitem}></Navitem>
             <Navitem item="SEARCH" tolink="/search"  activec={this.activeitem}></Navitem>
             <Navitem item="REGISTRATION" tolink="/registration"  activec={this.activeitem}></Navitem>
             <Navitem item="LOGOUT" tolink="/logout"  activec={this.activeitem}></Navitem>

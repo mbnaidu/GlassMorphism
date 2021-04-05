@@ -6,7 +6,6 @@ import {
   Route,
 } from "react-router-dom";
 import Navbar from './components/Navbar';
-import Home from './contents/Home';
 import Search from './contents/Search';
 import Registration from './contents/Registration';
 import Login from './components/Login'
@@ -29,9 +28,6 @@ function App() {
     <div className="App">
     <Route exact path="/">
     <Login />
-    </Route>
-    <Route exact path="/home">
-    <Home />
     </Route>
     <Route path="/search">
     <Search />
