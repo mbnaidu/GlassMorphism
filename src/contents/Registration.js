@@ -11,6 +11,7 @@ function Registration() {
     const [family, setfamily] = useState([]);
     const [members,setmembers] = useState([]);
     const [gender,setgender] = useState([]);
+    const [number,setnumber] = useState("");
     const createElements = (n)=>{
         for(var i = 1; i <= n; i++){
             family.push(
@@ -28,6 +29,12 @@ function Registration() {
     const send = (h) => {
         gender.push(h)
     }
+    const [senddata,setsenddata] = useState([]);
+    const finalcall = (m,g) => {
+        for(var i=0;i<m.length;i++){
+            senddata.push(m[i],g[i]);
+        }
+    }
     var id = 0;
     return (
             <div>
@@ -42,7 +49,7 @@ function Registration() {
                                             <div class="agileits-top">
                                                 <form action="#" method="post">
                                                     <div class="form__group">
-                                                        <input type="input" class="form__field" placeholder="Name" id='ration' required />
+                                                        <input type="input" class="form__field" placeholder="Name" id='ration' required value={number} onChange={event=> setnumber(event.target.value)}/>
                                                         <label for="name" class="form__label">RATION CARD</label>
                                                     </div>
                                                 </form>
@@ -149,7 +156,7 @@ function Registration() {
                                     })}
                                     <div>
                                         <div class="container">
-                                            <a class="btn cta" onClick={()=>{console.log(members,gender)}}>SUBMIT</a>
+                                            <a class="btn cta" onClick={()=>{console.log(senddata);finalcall(members,gender)}}>SUBMIT</a>
                                         </div>
                                     </div>
                                 </div>
