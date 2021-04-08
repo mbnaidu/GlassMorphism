@@ -1,14 +1,15 @@
 import { faBreadSlice } from '@fortawesome/free-solid-svg-icons';
-import { Button, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, TextField } from '@material-ui/core';
+import {  Button, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, TextField } from '@material-ui/core';
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import React, { Component, useState } from 'react';
 import Navbar from '../components/Navbar';
 import '../Styles/Registrationc.css'
 import axios from 'axios';
-
+import {Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import jsPDF from 'jspdf'
 
 function Registration() {
-    const [rationNumber, setRationNumber] = useState();
+    const [rationNumber, setRationNumber] = useState("");
     const [totalMembers, setTotalMembers] = useState(1);
     const [isRationpage, setIsRationPage] = useState(true);
     let family = [];
@@ -19,6 +20,11 @@ function Registration() {
                 <li>{i}</li>
             );
         }
+    }
+    
+    const [modal, setModal] = useState(false);
+    const toggle = () => {
+        setModal(!modal);
     }
     const changeHandler = (key,value, index) => {
         var key1 = {};
@@ -48,7 +54,7 @@ function Registration() {
         } else {
             members.push({...key1});
         }
-        console.log(members);
+        // console.log(members);
     }
     const submitHandler = () => {
         const data = {
@@ -62,6 +68,14 @@ function Registration() {
             }
         )
     }
+    const generatePDF = () => {
+      var doc = new jsPDF('p', 'pt');
+      
+      doc.text(20, 20, 'This is the first title.')  
+
+      
+      doc.save('demo.pdf')
+    }  
     return (
             <div>
                 <Navbar />
@@ -92,7 +106,7 @@ function Registration() {
                                         </div>
                                         <div className="fluid_button">
                                             <a >
-                                                <Button onClick={()=> setIsRationPage(false)}><span>ENTER</span></Button>
+                                                <Button onClick={()=> {setIsRationPage(rationNumber.length === 1 ? false : true)}}><span >ENTER</span></Button>
                                                 <div class="liquid"></div>
                                             </a>
                                         </div>
@@ -120,7 +134,7 @@ function Registration() {
                                     {createElements(totalMembers)}
                                     {family.map((m, index)=>{
                                         return(
-                                            <div className="row">
+                                            <div>
                                                 <div class="agileits-top column">
                                                     <form action="#" method="post">
                                                         <div class="form__group">
@@ -166,9 +180,21 @@ function Registration() {
                                     })}
                                     <div>
                                         <div class="container">
-                                            <a class="btn cta" onClick={() => submitHandler()}>SUBMIT</a>
+                                            <a class="btn cta" onClick={() => toggle()}>SUBMIT</a>
                                         </div>
                                     </div>
+                                </div>
+                                <div>
+                                <Modal isOpen={modal} toggle={toggle} >
+                                    <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                                    <ModalBody>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    </ModalBody>
+                                    <ModalFooter>
+                                    <Button color="primary" onClick={()=>submitHandler(),toggle}>SUBMIT</Button>{' '}
+                                    <Button color="secondary" onClick={()=>submitHandler(),toggle,generatePDF}>PRINT AND SUBMIT</Button>
+                                    </ModalFooter>
+                                </Modal>
                                 </div>
                             </div>
                         </div>

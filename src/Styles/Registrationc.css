@@ -1244,7 +1244,8 @@ a:hover .liquid {
     text-align: center;
 }
 
-.btn {
+.btns {
+    width:200px;
     color: #101832;
     cursor: pointer;
     display: inline-block;
