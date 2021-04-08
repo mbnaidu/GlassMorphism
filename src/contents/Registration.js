@@ -1,17 +1,18 @@
+import { faBreadSlice } from '@fortawesome/free-solid-svg-icons';
 import { Button, FormControl, FormControlLabel, FormLabel, Input, Radio, RadioGroup, TextField } from '@material-ui/core';
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import React, { Component, useState } from 'react';
 import Navbar from '../components/Navbar';
 import '../Styles/Registrationc.css'
-
+import axios from 'axios';
 
 
 function Registration() {
-    const [totalMembers,settotalMembers] = useState(1);
-    const [rationNumber, setrationNumber] = useState(true);
-    const [family, setfamily] = useState([]);
-    const [members,setmembers] = useState([]);
-    const [gender,setgender] = useState([]);
-    const [number,setnumber] = useState("");
+    const [rationNumber, setRationNumber] = useState();
+    const [totalMembers, setTotalMembers] = useState(1);
+    const [isRationpage, setIsRationPage] = useState(true);
+    let family = [];
+    let members = [];
     const createElements = (n)=>{
         for(var i = 1; i <= n; i++){
             family.push(
@@ -19,28 +20,53 @@ function Registration() {
             );
         }
     }
-    const finalmembers = (f) => {
-        for(var i=0;i<f.length;i++){
-            if(f[i]!=""){
-                members.push(f[i]);
+    const changeHandler = (key,value, index) => {
+        var key1 = {};
+        
+        switch(key) {
+            case 'name':
+                key1.name = value;
+                break;
+            case 'aadharNumber':
+                key1.aadharNumber = value;
+                break;
+            case 'gender':
+                key1.gender = value;
+                break;
+            case 'age':
+                key1.age = value;
+                break;
+            default:
+                break;
+        }
+        if(members[index] !== undefined) {
+            if(members[index][key] != undefined) {
+                members[index][key] = value;
+            } else {
+                members[index][key] = value
             }
+        } else {
+            members.push({...key1});
         }
+        console.log(members);
     }
-    const send = (h) => {
-        gender.push(h)
-    }
-    const [senddata,setsenddata] = useState([]);
-    const finalcall = (m,g) => {
-        for(var i=0;i<m.length;i++){
-            senddata.push(m[i],g[i]);
+    const submitHandler = () => {
+        const data = {
+            "rationId":rationNumber,
+            "members":members
         }
+        console.log(data);
+        axios.post('http://localhost:3001/addData', {data}).then(
+            function(res) {
+                console.log(res);
+            }
+        )
     }
-    var id = 0;
     return (
             <div>
                 <Navbar />
                 {
-                    rationNumber ? (
+                    isRationpage ? (
                         <div>
                             <div className="condiv">
                                 <div>
@@ -49,7 +75,7 @@ function Registration() {
                                             <div class="agileits-top">
                                                 <form action="#" method="post">
                                                     <div class="form__group">
-                                                        <input type="input" class="form__field" placeholder="Name" id='ration' required value={number} onChange={event=> setnumber(event.target.value)}/>
+                                                        <input type="input" class="form__field" placeholder="Name" id='ration' required value={rationNumber} onChange={event=> setRationNumber(event.target.value)}/>
                                                         <label for="name" class="form__label">RATION CARD</label>
                                                     </div>
                                                 </form>
@@ -61,12 +87,12 @@ function Registration() {
                                                 type="number"
                                                 variant="outlined"
                                                 color="primary"
-                                                onChange={event=> settotalMembers(event.target.value)}
+                                                onChange={event=> setTotalMembers(event.target.value)}
                                                 />
                                         </div>
                                         <div className="fluid_button">
                                             <a >
-                                                <Button onClick={() => {setrationNumber(false);}}><span>ENTER</span></Button>
+                                                <Button onClick={()=> setIsRationPage(false)}><span>ENTER</span></Button>
                                                 <div class="liquid"></div>
                                             </a>
                                         </div>
@@ -92,33 +118,17 @@ function Registration() {
                             <div className="condiv">
                                 <div>
                                     {createElements(totalMembers)}
-                                    {family.map((m)=>{
-                                        let name;
-                                        let full = [];
-                                        let store = [];
-                                        const calling = () =>{
-                                            console.log(store)
-                                            if(store!=""){
-                                                full.push(store[store.length-1]);
-                                            }
-                                        }
-                                        const setname = (z)=>{
-                                            if(z!="" && z!="undefined"){
-                                                store.push(z);
-                                            }
-                                        };
-                                        var m = id;
-                                        id = id + 1;
+                                    {family.map((m, index)=>{
                                         return(
                                             <div className="row">
                                                 <div class="agileits-top column">
                                                     <form action="#" method="post">
                                                         <div class="form__group">
-                                                            <input type="input" class="form__field" placeholder="Name" id='ration' required value={name} onChange={event=> setname(event.target.value)} />
-                                                            <label for="name" class="form__label">{id} Person</label>
+                                                            <input type="input" class="form__field" placeholder="Name" id='ration' required  onChange={event => changeHandler("name", event.target.value, index)} />
+                                                            <label for="name" class="form__label">{index+1} Person</label>
                                                         </div>
                                                         <div class="form__group">
-                                                            <input type="input" class="form__field" placeholder="Name" id='ration' required />
+                                                            <input type="input" class="form__field" placeholder="Name" id='ration' required onChange={event => changeHandler("aadharNumber", event.target.value, index)}/>
                                                             <label for="name" class="form__label">Aadhar Card Number</label>
                                                         </div>
                                                     </form>
@@ -129,12 +139,12 @@ function Registration() {
                                                     <br/>
                                                     <br/>
                                                     <div>
-                                                        <FormControl component="fieldset" onChange={(event)=>{send(event.target.value);calling();finalmembers(full);}}>
+                                                        <FormControl component="fieldset" onChange={(event)=> changeHandler("gender", event.target.value, index)}>
                                                             <FormLabel component="legend">Gender</FormLabel>
                                                             <RadioGroup aria-label="gender" name="gender1">
-                                                                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                                                <FormControlLabel value="male" control={<Radio />} label="Male" />
-                                                                <FormControlLabel value="other" control={<Radio />} label="Other" />
+                                                                <FormControlLabel value="f" control={<Radio />} label="Female" />
+                                                                <FormControlLabel value="m" control={<Radio />} label="Male" />
+                                                                <FormControlLabel value="o" control={<Radio />} label="Other" />
                                                             </RadioGroup>
                                                         </FormControl>
                                                     </div>
@@ -147,7 +157,7 @@ function Registration() {
                                                                 type="number"
                                                                 variant="outlined"
                                                                 color="primary"
-                                                                />
+                                                                onChange = {(event) => changeHandler("age", event.target.value, index)}/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -156,7 +166,7 @@ function Registration() {
                                     })}
                                     <div>
                                         <div class="container">
-                                            <a class="btn cta" onClick={()=>{console.log(senddata);finalcall(members,gender)}}>SUBMIT</a>
+                                            <a class="btn cta" onClick={() => submitHandler()}>SUBMIT</a>
                                         </div>
                                     </div>
                                 </div>

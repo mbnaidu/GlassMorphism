@@ -26,10 +26,10 @@ function Login({ history }) {
                 <div>
                     <div class="box">
                         <div class="inner">
-                            <span>COMMUNITY</span>
+                            <span>నున్న గ్రామ</span>
                         </div>
                         <div class="inner">
-                            <span>COMMUNITY</span>
+                            <span>నున్న గ్రామ</span>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
-import Socialc from '../Styles/Socialc.css'
+import '../Styles/Socialc.css'
 
 class Logout extends Component {
     render() {
@@ -12,18 +12,33 @@ class Logout extends Component {
                     <div>
 				<div class="social glass">
 					<div class="field">
-						<a class="sns-btn sns-btn--twitter">
-							<i class="sns-btn__icon fab fa-twitter"></i>
+						{/* <a class="sns-btn sns-btn--twitter">
+							<i class="fa fa-twitter fa-2x"></i>
 						</a>	
 						<a class="sns-btn sns-btn--facebook">
-							<i class="sns-btn__icon fab fa-facebook-f"></i>
+							<i class="fa fa-facebook-f"></i>
 						</a>
 						<a class="sns-btn sns-btn--instagram">
-							<i class="sns-btn__icon fab fa-instagram"></i>
+							<i class="fa fa-instagram"></i>
 						</a>
                         <a class="sns-btn sns-btn--whatsapp">
-							<i class="sns-btn__icon fab fa-whatsapp"></i>
-						</a>
+							<i class="fa fa-whatsapp "></i>
+						</a> */}
+                        <div class="hexagon-wrapper">
+                            <div class="hexagon">
+                                <i class="fab fa-facebook"></i>
+                            </div>
+                            </div>
+                            <div class="hexagon-wrapper">
+                            <div class="hexagon">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            </div>
+                            <div class="hexagon-wrapper">
+                            <div class="hexagon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            </div>
 					</div>
             </div> 
 			</div>    

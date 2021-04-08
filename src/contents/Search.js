@@ -1,23 +1,34 @@
 import { Input } from '@material-ui/core';
 import React, { Component, useState } from 'react';
 import Navbar from '../components/Navbar';
-import Searchc from '../Styles/Searchc.css'
-
+import '../Styles/Searchc.css'
+import axios from 'axios';
 
 function Search() {
-    const [panNumber, setpanNumber] = useState(0);
+    const [rationNumber, setRationNumber] = useState(0);
     const [result, setresult] = useState(false)
+    const getSearchResults = () => {
+        const data = {
+            "rationId":rationNumber,
+        }
+        console.log(data);
+        axios.post('http://localhost:3001/getData', {data}).then(
+            function(res) {
+                console.log(res);
+            }
+        )
+    }
     return (
             <div>
                 <Navbar />
                 {result ? (
                         <div className="condiv">
-                            {panNumber}
+                            {rationNumber}
                         </div>
                 ) : (
                     <div>
                         <div className="condiv">
-                            <div className="search">
+                            {/* <div className="search">
                             <input className="c-checkbox" type="checkbox" id="checkbox"/>
                                 <div className="c-formContainer">
                                 <form className="c-form" action="">
@@ -28,6 +39,14 @@ function Search() {
                                     <label className="c-form__toggle" for="checkbox"  data-title="Search"></label>
                                 </form>
                             </div>
+                            </div> */}
+                            <div>
+                                <form>
+                                    <div class="searchd-box">
+                                        <input type="text" class="txt" placeholder="Search Here..." onChange={(event) => setRationNumber(event.target.value)}/>
+                                        <a class="btn" onClick={() => getSearchResults()}><i class="fa fa-search"></i></a>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
