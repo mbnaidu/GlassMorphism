@@ -69,11 +69,9 @@ function Registration() {
         )
     }
     const generatePDF = () => {
-      var doc = new jsPDF('p', 'pt');
-      
-      doc.text(20, 20, 'This is the first title.')  
-
-      
+        var doc = new jsPDF('p', 'pt');
+    
+        doc.text(20, 20, 'This is the first title.')  
       doc.save('demo.pdf')
     }  
     return (
