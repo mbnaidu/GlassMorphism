@@ -57,23 +57,23 @@ function Registration() {
         // console.log(members);
     }
     const submitHandler = () => {
-        console.log("h")
+        // console.log("h")
         const data = {
             "rationId":rationNumber,
             "members":members
         }
-        console.log(data);
+        // console.log(data);
         axios.post('http://localhost:3001/addData', {data}).then(
             function(res) {
-                console.log(res);
+                // console.log(res);
             }
         )
     }
-    const generatePDF = () => {
+    const generatePDF = (x) => {
         var doc = new jsPDF('p', 'pt');
-    
         doc.text(20, 20, 'This is the first title.')  
-      doc.save('demo.pdf')
+        doc.save('demo.pdf')
+        
     }  
     return (
             <div>
@@ -179,7 +179,7 @@ function Registration() {
                                     })}
                                     <div>
                                         <div class="container">
-                                            <a class="btn " onClick={() => {toggle();submitHandler();console.log(members)}}>CHECK</a>
+                                            <a class="btn " onClick={() => {toggle();}}>CHECK</a>
                                         </div>
                                     </div>
                                 </div>
@@ -190,14 +190,14 @@ function Registration() {
                                         {members.map((m)=>{
                                             return(
                                                 <div>
-                                                    <li>{m.aadharNumber}</li>
+                                                    <li>jji</li>
                                                 </div>
                                             )
                                         })}
                                     </ModalBody>
                                     <ModalFooter>
-                                    <Button color="primary" onClick={()=>{submitHandler();toggle()}}>SUBMIT</Button>{' '}
-                                    <Button color="secondary" onClick={()=>{submitHandler();toggle();generatePDF()}}>PRINT AND SUBMIT</Button>
+                                    <Button color="primary" onClick={()=>{submitHandler();toggle();setIsRationPage(true);setRationNumber("");setTotalMembers(1)}}>SUBMIT</Button>{' '}
+                                    <Button color="secondary" onClick={()=>{submitHandler();toggle();generatePDF(members);setIsRationPage(true);setRationNumber("");setTotalMembers(1)}}>PRINT AND SUBMIT</Button>
                                     </ModalFooter>
                                 </Modal>
                                 </div>
