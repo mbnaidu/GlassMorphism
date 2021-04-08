@@ -57,6 +57,7 @@ function Registration() {
         // console.log(members);
     }
     const submitHandler = () => {
+        console.log("h")
         const data = {
             "rationId":rationNumber,
             "members":members
@@ -178,19 +179,25 @@ function Registration() {
                                     })}
                                     <div>
                                         <div class="container">
-                                            <a class="btn cta" onClick={() => toggle()}>SUBMIT</a>
+                                            <a class="btn " onClick={() => {toggle();submitHandler();console.log(members)}}>CHECK</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div>
                                 <Modal isOpen={modal} toggle={toggle} >
-                                    <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+                                    <ModalHeader toggle={toggle}>ALL DETAILS</ModalHeader>
                                     <ModalBody>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                        {members.map((m)=>{
+                                            return(
+                                                <div>
+                                                    <li>{m.aadharNumber}</li>
+                                                </div>
+                                            )
+                                        })}
                                     </ModalBody>
                                     <ModalFooter>
-                                    <Button color="primary" onClick={()=>submitHandler(),toggle}>SUBMIT</Button>{' '}
-                                    <Button color="secondary" onClick={()=>submitHandler(),toggle,generatePDF}>PRINT AND SUBMIT</Button>
+                                    <Button color="primary" onClick={()=>{submitHandler();toggle()}}>SUBMIT</Button>{' '}
+                                    <Button color="secondary" onClick={()=>{submitHandler();toggle();generatePDF()}}>PRINT AND SUBMIT</Button>
                                     </ModalFooter>
                                 </Modal>
                                 </div>
