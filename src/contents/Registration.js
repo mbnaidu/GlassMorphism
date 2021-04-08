@@ -105,7 +105,7 @@ function Registration() {
                                         </div>
                                         <div className="fluid_button">
                                             <a >
-                                                <Button onClick={()=> {setIsRationPage(rationNumber.length === 1 ? false : true)}}><span >ENTER</span></Button>
+                                                <Button onClick={()=> {setIsRationPage(rationNumber.length === 10 ? false : true)}}><span >ENTER</span></Button>
                                                 <div class="liquid"></div>
                                             </a>
                                         </div>
