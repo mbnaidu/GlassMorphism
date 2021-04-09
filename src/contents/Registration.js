@@ -62,10 +62,10 @@ function Registration() {
             "rationId":rationNumber,
             "members":members
         }
-        // console.log(data);
+        console.log(data);
         axios.post('http://localhost:3001/addData', {data}).then(
             function(res) {
-                // console.log(res);
+                console.log(res);
             }
         )
     }
@@ -179,7 +179,7 @@ function Registration() {
                                     })}
                                     <div>
                                         <div class="container">
-                                            <a class="btn " onClick={() => {toggle();}}>CHECK</a>
+                                            <a class="btn " onClick={() => {toggle();submitHandler();}}>CHECK</a>
                                         </div>
                                     </div>
                                 </div>
