@@ -70,7 +70,9 @@ body {
     justify-content: space-around;
 
 } */
-
+.nav_items{
+  color: red;
+}
 .field {
     height: 100%;
     width: 100%;

@@ -3,20 +3,23 @@ import React, { Component, useState } from 'react';
 import Navbar from '../components/Navbar';
 import '../Styles/Searchc.css'
 import axios from 'axios';
-import {Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, ModalFooter, Table, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 
 function Search() {
     const [rationNumber, setRationNumber] = useState(0);
     const [result, setresult] = useState(false);
     const [arr,setarr] = useState([]);
     const getSearchResults = () => {
+        let temp = [];
         const data = {
             "rationId":rationNumber,
         }
         axios.post('http://localhost:3001/getData', {data}).then(
             function(res) {
                 res.data.map((m)=>{
-                    arr.push(m)
+                    // arr.push(m)
+                    console.log(m)
+                    setarr(arr=>[...arr,m])
                 })
             }
         )
@@ -29,15 +32,17 @@ function Search() {
                     <div>
                         <div className="condiv">
                             <div>
-                                <form>
-                                    <div class="searchd-box">
-                                        <input type="text" class="txt" placeholder="Search Here..." onChange={(event) => setRationNumber(event.target.value)}/>
-                                        <a onClick={() => {getSearchResults();toggle()}}><i class="fa fa-search"></i></a>
-                                    </div>
-                                </form>
+                                <InputGroup>
+                                        <Input placeholder="Search Here..." onChange={(event) => setRationNumber(event.target.value)} />
+                                    <InputGroupAddon addonType="append">
+                                    <InputGroupAddon>
+                                        <Button class="learn-more" onClick={() => {setarr([]);getSearchResults();toggle()}}><i class="fa fa-search"></i> Search</Button>
+                                    </InputGroupAddon>
+                                    </InputGroupAddon>
+                                </InputGroup>
                             </div>
                             <div>
-                            <Modal isOpen={modal} toggle={toggle} size="xl">
+                            <Modal isOpen={modal}  size="lg">
                                 <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                                 <ModalBody>
                                     <Table striped bordered hover responsive="xl">
