@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Carousel from "react-spring-3d-carousel";
 import uuidv4 from "uuid";
 import { config } from "react-spring";
+import logo1 from '../img/y.png'
+import logo2 from '../img/r.png'
+import logo3 from '../img/t.png'
+
 
 export default class Example extends Component {
     state = {
@@ -13,15 +17,15 @@ export default class Example extends Component {
     slides = [
     {
         key: uuidv4(),
-        content: <img src="https://picsum.photos/800/801/?random" alt="1" />
+        content: <img src={logo2} alt="1" />
     },
     {
         key: uuidv4(),
-        content: <img src="https://picsum.photos/800/802/?random" alt="2" />
+        content: <img src={logo1} alt="2" />
     },
     {
         key: uuidv4(),
-        content: <img src="https://picsum.photos/600/803/?random" alt="3" />
+        content: <img src={logo3} alt="3" />
     },
     // {
     //     key: uuidv4(),

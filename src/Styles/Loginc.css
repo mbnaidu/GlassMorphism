@@ -1,24 +1,5 @@
 html,
-body {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-* {
-    box-sizing: border-box;
-}
 
 *::before,
 *::after {
@@ -176,4 +157,32 @@ section.login>form>button:active {
     to {
         left: -100%;
     }
+}
+
+.textg {
+    margin-bottom: 25%;
+    transform: translate(50%,-50%);
+    font-family: verdana;
+    font-size: 3em;
+    font-weight: 700;
+    color: #f5f5f5;
+    text-shadow: 1px 1px 1px #919191,
+        1px 2px 1px #919191,
+        1px 3px 1px #919191,
+        1px 4px 1px #919191,
+        1px 5px 1px #919191,
+        1px 6px 1px #919191,
+        1px 7px 1px #919191,
+        1px 8px 1px #919191,
+        1px 9px 1px #919191,
+        1px 10px 1px #919191,
+    1px 18px 6px rgba(16,16,16,0.4),
+    1px 22px 10px rgba(16,16,16,0.2),
+    1px 25px 35px rgba(16,16,16,0.2),
+    1px 30px 60px rgba(16,16,16,0.4);
+}
+.title{
+    margin-top: 50px;
+    margin-left: 5%;
+    margin-bottom: 50px;
 }

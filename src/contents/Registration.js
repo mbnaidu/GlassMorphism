@@ -7,6 +7,9 @@ import '../Styles/Registrationc.css'
 import axios from 'axios';
 import {Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import jsPDF from 'jspdf'
+import logo from '../img/one.png'
+import logo1 from '../img/jj.png'
+
 
 function Registration() {
     const [rationNumber, setRationNumber] = useState("");
@@ -21,7 +24,7 @@ function Registration() {
             );
         }
     }
-    
+    const [madhu,setmadhu] = useState(["abcdefghijklm","babcdefghijklm","cabcdefghijklm","dabcdefghijklm","eabcdefghijklm","abcdefghijklmf","abcdefghijklmg"])
     const [modal, setModal] = useState(false);
     const toggle = () => {
         setModal(!modal);
@@ -69,9 +72,122 @@ function Registration() {
             }
         )
     }
+    
     const generatePDF = (x) => {
         var doc = new jsPDF('p', 'pt');
-        doc.text(20, 20, 'This is the first title.')  
+        doc.addImage(logo, 'JPEG', 15, 20, 60, 60);
+        doc.addImage(logo1, 'JPEG', 520, 20, 60, 60);
+        doc.setFontSize(19);
+        doc.text('NUNNA GRAMA RAJAKA JANA SEVA SANGHAM', 80, 50);
+        doc.setFontSize(15)
+        doc.text('(Regd. No.45656, C.C.No:56456)',170, 80);
+        doc.text('Nunna Village, Dhobi Ghat Center, High School Road ,Vijayawada Rural Mandal,', 50, 110);
+        doc.text('Krishna District, Pin code : 521212, Contact:7075606998', 130, 130); 
+        doc.text('-------------------------------------------------------------------------------------------------------------------------- ', 0, 145); 
+        doc.text('PAN CARD NUMBER : ',50,192);
+        doc.text('PHONE NUMBER       : ',50,222)
+        doc.text('-----------------------------------------------------------------------------------------------------------------', 18, 250);
+        doc.text('FULL NAME',65,272);
+        doc.text('AADHAR NUMBER',195,272);
+        doc.text('GENDER',375,272);
+        doc.text('AGE',480,272);
+        doc.text('-----------------------------------------------------------------------------------------------------------------', 18, 290);
+        doc.text('|',18,295);
+        doc.text('|',18,293);
+        doc.text('|',18,292);
+        doc.text('|',18,289);
+        doc.text('|',18,287);
+        doc.text('|',18,285);
+        doc.text('|',18,283);
+        doc.text('|',18,281);
+        doc.text('|',18,279);
+        doc.text('|',18,277);
+        doc.text('|',18,275);
+        doc.text('|',18,273);
+        doc.text('|',18,271);
+        doc.text('|',18,269);
+        doc.text('|',18,267);
+        doc.text('|',18,265);
+        doc.text('|',18,263);
+        doc.text('|',18,261);
+        doc.text('|',18,259);
+        doc.text('|',18,257);
+        doc.text('|',18,267);
+        // 
+        doc.text('|',580,295);
+        doc.text('|',580,293);
+        doc.text('|',580,292);
+        doc.text('|',580,289);
+        doc.text('|',580,287);
+        doc.text('|',580,285);
+        doc.text('|',580,283);
+        doc.text('|',580,281);
+        doc.text('|',580,279);
+        doc.text('|',580,277);
+        doc.text('|',580,275);
+        doc.text('|',580,273);
+        doc.text('|',580,271);
+        doc.text('|',580,269);
+        doc.text('|',580,267);
+        doc.text('|',580,265);
+        doc.text('|',580,263);
+        doc.text('|',580,261);
+        doc.text('|',580,259);
+        doc.text('|',580,257);
+        doc.text('|',580,267);
+        let variable = 290;
+        for (let index = 0; index < madhu.length; index++) {
+            variable = variable + 40;
+            const element = madhu[index];
+            doc.text('|',18,variable);
+            doc.text('|',18,variable-8);
+            doc.text('|',18,variable-10);
+            doc.text('|',18,variable-13);
+            doc.text('|',18,variable-15);
+            doc.text('|',18,variable-17);
+            doc.text('|',18,variable-19);
+            doc.text('|',18,variable-22);
+            doc.text('|',18,variable-12);
+            doc.text('|',18,variable-7);
+            doc.text('|',18,variable-1);
+            doc.text('|',18,variable-2);
+            doc.text('|',18,variable-3);
+            doc.text('|',18,variable-4);
+            doc.text('|',18,variable-5);
+            doc.text('|',18,variable+3);
+            doc.text('|',18,variable+4);
+            doc.text('|',18,variable+5);
+            doc.text('|',18,variable+6);
+            doc.text('|',18,variable+7);
+            doc.text('|',18,variable+8);
+            // 
+            doc.text('|',580,variable);
+            doc.text('|',580,variable-8);
+            doc.text('|',580,variable-10);
+            doc.text('|',580,variable-13);
+            doc.text('|',580,variable-15);
+            doc.text('|',580,variable-17);
+            doc.text('|',580,variable-19);
+            doc.text('|',580,variable-22);
+            doc.text('|',580,variable-12);
+            doc.text('|',580,variable-7);
+            doc.text('|',580,variable-1);
+            doc.text('|',580,variable-2);
+            doc.text('|',580,variable-3);
+            doc.text('|',580,variable-4);
+            doc.text('|',580,variable-5);
+            doc.text('|',580,variable+3);
+            doc.text('|',580,variable+4);
+            doc.text('|',580,variable+5);
+            doc.text('|',580,variable+6);
+            doc.text('|',580,variable+7);
+            doc.text('|',580,variable+8);
+            doc.text(element,30,variable);
+            doc.text('123456789012',200,variable);
+            doc.text('MALE',370,variable);
+            doc.text('123',480,variable);
+        }
+        doc.text('-----------------------------------------------------------------------------------------------------------------', 18, variable+17);
         doc.save('demo.pdf')
         
     }  
@@ -105,7 +221,7 @@ function Registration() {
                                         </div>
                                         <div className="fluid_button">
                                             <a >
-                                                <Button onClick={()=> {setIsRationPage(rationNumber.length === 10 ? false : true)}}><span >ENTER</span></Button>
+                                                <Button onClick={()=> {generatePDF();setIsRationPage(rationNumber.length === 0 ? false : true)}}><span >ENTER</span></Button>
                                                 <div class="liquid"></div>
                                             </a>
                                         </div>
@@ -185,7 +301,7 @@ function Registration() {
                                 </div>
                                 <div>
                                 <Modal isOpen={modal} toggle={toggle} >
-                                    <ModalHeader toggle={toggle}>ALL DETAILS</ModalHeader>
+                                    <ModalHeader toggle={toggle}>SUCCESSFULLY</ModalHeader>
                                     <ModalBody>
                                         {members.map((m)=>{
                                             return(
