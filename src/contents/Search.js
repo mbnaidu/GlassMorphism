@@ -1,5 +1,5 @@
 import { Input,Button } from '@material-ui/core';
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import '../Styles/Searchc.css'
 import axios from 'axios';
@@ -9,16 +9,24 @@ function Search() {
     const [rationNumber, setRationNumber] = useState(0);
     const [result, setresult] = useState(false);
     const [arr,setarr] = useState([]);
+    const [allusers,setallusers] = useState([]);
+    useEffect(() => {
+        axios.post('http://localhost:3001/getAllData', {}).then(
+            function(res) {
+                res.data.map((a)=>{
+                    setallusers(allusers=>[...allusers,a])
+                })
+            }
+        )
+    }, [])
     const getSearchResults = () => {
         let temp = [];
         const data = {
-            "rationId":rationNumber,
+            "searchText":rationNumber,
         }
         axios.post('http://localhost:3001/getData', {data}).then(
             function(res) {
                 res.data.map((m)=>{
-                    // arr.push(m)
-                    console.log(m)
                     setarr(arr=>[...arr,m])
                 })
             }
@@ -26,6 +34,7 @@ function Search() {
     }
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+    let total_users = 0;
     return (
             <div>
                 <Navbar />
@@ -41,6 +50,35 @@ function Search() {
                                     </InputGroupAddon>
                                 </InputGroup>
                             </div>
+                            <div className="alluser_details">
+                                <Table striped bordered hover responsive="xl" dark>
+                                        <thead>
+                                            <tr>
+                                            <th>S.NO</th>
+                                            <th>RATION CARD NUMBER</th>
+                                            <th>FULL NAME </th>
+                                            <th>AADHAR NUMBER</th>
+                                            <th>GENDER</th>
+                                            <th>AGE</th>
+                                            </tr>
+                                        </thead>
+                                        {allusers.map((a)=>{
+                                            total_users = total_users + 1;
+                                            return(
+                                                <tbody>
+                                                    <tr>
+                                                    <th scope="row">{total_users}</th>
+                                                    <td>{a.rationId}</td>
+                                                    <td>{a.name}</td>
+                                                    <td>{a.aadharNumber}</td>
+                                                    <td>{a.gender}</td>
+                                                    <td>{a.age}</td>
+                                                    </tr>
+                                                </tbody>
+                                            )
+                                        })}
+                                    </Table>
+                            </div>
                             <div>
                             <Modal isOpen={modal}  size="lg">
                                 <ModalHeader toggle={toggle}>Modal title</ModalHeader>
@@ -48,19 +86,17 @@ function Search() {
                                     <Table striped bordered hover responsive="xl">
                                         <thead>
                                             <tr>
-                                            <th>#</th>
-                                            <th>RationID</th>
-                                            <th>Name</th>
-                                            <th>AadharNumber</th>
-                                            <th>Gender</th>
-                                            <th>Age</th>
+                                            <th>RATION CARD NUMBER</th>
+                                            <th>FULL NAME </th>
+                                            <th>AADHAR NUMBER</th>
+                                            <th>GENDER</th>
+                                            <th>AGE</th>
                                             </tr>
                                         </thead>
                                         {arr.map((a)=>{
                                             return(
                                                 <tbody>
                                                     <tr>
-                                                    <th scope="row">1</th>
                                                     <td>{a.rationId}</td>
                                                     <td>{a.name}</td>
                                                     <td>{a.aadharNumber}</td>

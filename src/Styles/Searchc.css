@@ -161,7 +161,10 @@
     padding: 10px;
 
 }
-
+.alluser_details{
+    overflow: auto;
+    margin-top: 100px;
+}
 
 .btn {
     color: #e84118;

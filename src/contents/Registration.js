@@ -15,8 +15,11 @@ function Registration() {
     const [rationNumber, setRationNumber] = useState("");
     const [totalMembers, setTotalMembers] = useState(1);
     const [isRationpage, setIsRationPage] = useState(true);
+    const [phone,setphone] = useState("");
+    const [address,setaddress] = useState("");
+    const [arr,setarr] = useState([]);
     let family = [];
-    let members = [];
+    const [members,setmembers] = useState([]);
     const createElements = (n)=>{
         for(var i = 1; i <= n; i++){
             family.push(
@@ -57,23 +60,22 @@ function Registration() {
         } else {
             members.push({...key1});
         }
-        // console.log(members);
     }
     const submitHandler = () => {
-        // console.log("h")
         const data = {
             "rationId":rationNumber,
-            "members":members
+            "members":members,
+            "phone":phone,
+            "address":address
         }
-        console.log(data);
         axios.post('http://localhost:3001/addData', {data}).then(
             function(res) {
-                console.log(res);
+                // console.log(res);
             }
         )
     }
     
-    const generatePDF = (x) => {
+    const generatePDF = () => {
         var doc = new jsPDF('p', 'pt');
         doc.addImage(logo, 'JPEG', 15, 20, 60, 60);
         doc.addImage(logo1, 'JPEG', 520, 20, 60, 60);
@@ -136,9 +138,8 @@ function Registration() {
         doc.text('|',580,257);
         doc.text('|',580,267);
         let variable = 290;
-        for (let index = 0; index < madhu.length; index++) {
+        members.map((m)=>{
             variable = variable + 40;
-            const element = madhu[index];
             doc.text('|',18,variable);
             doc.text('|',18,variable-8);
             doc.text('|',18,variable-10);
@@ -182,11 +183,11 @@ function Registration() {
             doc.text('|',580,variable+6);
             doc.text('|',580,variable+7);
             doc.text('|',580,variable+8);
-            doc.text(element,30,variable);
-            doc.text('123456789012',200,variable);
-            doc.text('MALE',370,variable);
-            doc.text('123',480,variable);
-        }
+            doc.text(m.name,30,variable);
+            doc.text(m.aadharNumber,200,variable);
+            doc.text(m.gender,370,variable);
+            doc.text(m.age,480,variable);
+        })
         doc.text('-----------------------------------------------------------------------------------------------------------------', 18, variable+17);
         doc.save('demo.pdf')
         
@@ -207,6 +208,14 @@ function Registration() {
                                                         <input type="input" class="form__field" placeholder="Name" id='ration' required value={rationNumber} onChange={event=> setRationNumber(event.target.value)}/>
                                                         <label for="name" class="form__label">RATION CARD</label>
                                                     </div>
+                                                    <div class="form__group">
+                                                        <input type="input" class="form__field" placeholder="Name" id='ration' required value={phone} onChange={event=> setphone(event.target.value)}/>
+                                                        <label for="name" class="form__label">PHONE NUMBER</label>
+                                                    </div>
+                                                    <div class="form__group">
+                                                        <input type="input" class="form__field" placeholder="Name" id='ration' required value={address} onChange={event=> setaddress(event.target.value)}/>
+                                                        <label for="name" class="form__label">ADDRESS</label>
+                                                    </div>
                                                 </form>
                                             </div>
                                         <div className="total_members">
@@ -221,7 +230,7 @@ function Registration() {
                                         </div>
                                         <div className="fluid_button">
                                             <a >
-                                                <Button onClick={()=> {generatePDF();setIsRationPage(rationNumber.length === 0 ? false : true)}}><span >ENTER</span></Button>
+                                                <Button onClick={()=> {setIsRationPage(rationNumber.length >= 0 ? false : true)}}><span >ENTER</span></Button>
                                                 <div class="liquid"></div>
                                             </a>
                                         </div>
@@ -301,19 +310,12 @@ function Registration() {
                                 </div>
                                 <div>
                                 <Modal isOpen={modal} toggle={toggle} >
-                                    <ModalHeader toggle={toggle}>SUCCESSFULLY</ModalHeader>
+                                    <ModalHeader toggle={toggle}>SUCCESSFULLY ADDED</ModalHeader>
                                     <ModalBody>
-                                        {members.map((m)=>{
-                                            return(
-                                                <div>
-                                                    <li>jji</li>
-                                                </div>
-                                            )
-                                        })}
                                     </ModalBody>
                                     <ModalFooter>
-                                    <Button color="primary" onClick={()=>{submitHandler();toggle();setIsRationPage(true);setRationNumber("");setTotalMembers(1)}}>SUBMIT</Button>{' '}
-                                    <Button color="secondary" onClick={()=>{submitHandler();toggle();generatePDF(members);setIsRationPage(true);setRationNumber("");setTotalMembers(1)}}>PRINT AND SUBMIT</Button>
+                                    <Button color="primary" onClick={()=>{toggle();setIsRationPage(true);setRationNumber("");setTotalMembers(1);setaddress("");setphone("")}}>SUBMIT</Button>{' '}
+                                    <Button color="secondary" onClick={()=>{toggle();generatePDF(members);setIsRationPage(true);setRationNumber("");setTotalMembers(1);setaddress("");setphone("")}}>PRINT AND SUBMIT</Button>
                                     </ModalFooter>
                                 </Modal>
                                 </div>
