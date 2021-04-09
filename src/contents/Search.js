@@ -20,7 +20,6 @@ function Search() {
         )
     }, [])
     const getSearchResults = () => {
-        let temp = [];
         const data = {
             "searchText":rationNumber,
         }
