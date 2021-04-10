@@ -1,6 +1,7 @@
 
 .nav_items{
   color: red;
+  text-decoration: none;
 }
 .field {
     height: 100%;

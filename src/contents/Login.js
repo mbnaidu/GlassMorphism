@@ -7,21 +7,23 @@ import logog2 from '../img/two.png'
 import { Button } from 'reactstrap';
 
 function Login({ history }) {
-    const [intro,setIntro] = useState(false)
+    const [intro,setIntro] = useState(false);
+    const [username, setusername] = useState("");
+    const [password, setpassword] = useState("");
     return (
         <div>
             <nav className="glass login">
                 <section class="login">
                     <form action="javascript:void(0);" id="form">
-                        <label for="username">
+                        <label for="username" value={username}  onChange={event=> setusername(event.target.value)}>
                             Username
                             <input id="username" type="text"></input>
                         </label>
-                        <label for="password">
+                        <label for="password" value={password}  onChange={event=> setpassword(event.target.value)}>
                             Password
                             <input id="password" type="password"></input>
                         </label>
-                        <button type="submit" onClick={() => history.push('/registration')}>Login</button>
+                        <button type="submit" onClick={() => {username === "madhu123" && password === "madhu123" ? history.push('/registration') : history.push('/')}}>Login</button>
                     </form>
                 </section>
             </nav>
@@ -29,6 +31,7 @@ function Login({ history }) {
                 intro ? (
                     <div className="condiv login">
                         <Example />
+                        <Button className="about_us" onClick={()=>{setIntro(false)}}>HOME</Button>
                     </div>
                 ) : (
                     <div>

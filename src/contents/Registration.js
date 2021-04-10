@@ -27,7 +27,6 @@ function Registration() {
             );
         }
     }
-    const [madhu,setmadhu] = useState(["abcdefghijklm","babcdefghijklm","cabcdefghijklm","dabcdefghijklm","eabcdefghijklm","abcdefghijklmf","abcdefghijklmg"])
     const [modal, setModal] = useState(false);
     const toggle = () => {
         setModal(!modal);
@@ -191,6 +190,7 @@ function Registration() {
         })
         doc.text('-----------------------------------------------------------------------------------------------------------------', 18, variable+17);
         doc.text("ADDRESS : " + address,50,g+40);
+        doc.text('SIGNATURE',480,800)
         doc.save('demo.pdf')
         
     }  
@@ -205,7 +205,7 @@ function Registration() {
                                     <div class="main-w3layouts wrapper">
                                         <div class="main-agileinfo">
                                             <div class="agileits-top">
-                                                <form action="#" method="post">
+                                                <form action="#" method="post" novalidate>
                                                     <div class="form__group">
                                                         <input type="input" class="form__field" placeholder="Name" id='ration' required value={rationNumber} onChange={event=> setRationNumber(event.target.value)}/>
                                                         <label for="name" class="form__label">RATION CARD</label>
@@ -232,7 +232,7 @@ function Registration() {
                                         </div>
                                         <div className="fluid_button">
                                             <a >
-                                                <Button onClick={()=> {generatePDF();setIsRationPage(rationNumber.length >= 0 ? false : true)}}><span >ENTER</span></Button>
+                                                <Button onClick={()=> {generatePDF();setIsRationPage(rationNumber.length === 16 && phone.length === 10 && address.length >=10 ? false : true)}}><span >ENTER</span></Button>
                                                 <div class="liquid"></div>
                                             </a>
                                         </div>
