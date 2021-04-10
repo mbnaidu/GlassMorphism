@@ -1264,6 +1264,7 @@ a:hover .liquid {
     transition: all 200ms ease-in-out;
 }
 .btn {
+    right: 40%;
     width:200px;
     color: #101832;
     cursor: pointer;

@@ -30,6 +30,7 @@ body {
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
+  align-items: center;
 }
 
 .glass.login {
@@ -46,6 +47,7 @@ body {
   padding: 0;
   line-height: 1;
   text-align: center;
+  align-items: center;
 }
 
 nav {

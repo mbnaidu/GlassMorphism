@@ -74,7 +74,7 @@ function Registration() {
             }
         )
     }
-    
+    let g = 0;
     const generatePDF = () => {
         var doc = new jsPDF('p', 'pt');
         doc.addImage(logo, 'JPEG', 15, 20, 60, 60);
@@ -86,8 +86,8 @@ function Registration() {
         doc.text('Nunna Village, Dhobi Ghat Center, High School Road ,Vijayawada Rural Mandal,', 50, 110);
         doc.text('Krishna District, Pin code : 521212, Contact:7075606998', 130, 130); 
         doc.text('-------------------------------------------------------------------------------------------------------------------------- ', 0, 145); 
-        doc.text('PAN CARD NUMBER : ',50,192);
-        doc.text('PHONE NUMBER       : ',50,222)
+        doc.text('RATION NUMBER : ' + rationNumber,50,192);
+        doc.text('PHONE NUMBER  : ' + phone,50,222);
         doc.text('-----------------------------------------------------------------------------------------------------------------', 18, 250);
         doc.text('FULL NAME',65,272);
         doc.text('AADHAR NUMBER',195,272);
@@ -187,8 +187,10 @@ function Registration() {
             doc.text(m.aadharNumber,200,variable);
             doc.text(m.gender,370,variable);
             doc.text(m.age,480,variable);
+            g = variable;
         })
         doc.text('-----------------------------------------------------------------------------------------------------------------', 18, variable+17);
+        doc.text("ADDRESS : " + address,50,g+40);
         doc.save('demo.pdf')
         
     }  
@@ -230,7 +232,7 @@ function Registration() {
                                         </div>
                                         <div className="fluid_button">
                                             <a >
-                                                <Button onClick={()=> {setIsRationPage(rationNumber.length >= 0 ? false : true)}}><span >ENTER</span></Button>
+                                                <Button onClick={()=> {generatePDF();setIsRationPage(rationNumber.length >= 0 ? false : true)}}><span >ENTER</span></Button>
                                                 <div class="liquid"></div>
                                             </a>
                                         </div>
