@@ -15,6 +15,8 @@ function Search() {
     const [arr,setarr] = useState([]);
     const [allusers,setallusers] = useState([]);
     const [faddress,setfaddress] = useState("")
+    const [phonenumber, setphonenumber] = useState("")
+    const [ration, setration] = useState("")
     useEffect(() => {
         axios.post('http://localhost:3001/getAllData', {}).then(
             function(res) {
@@ -31,8 +33,10 @@ function Search() {
         axios.post('http://localhost:3001/getData', {data}).then(
             function(res) {
                 res.data.map((m)=>{
+                    setfaddress(m.address)
+                    setphonenumber(m.phone)
+                    setration(m.rationId)
                     setarr(arr=>[...arr,m])
-                    console.log(m)
                 })
             }
         )
@@ -49,8 +53,8 @@ function Search() {
         doc.text('Nunna Village, Dhobi Ghat Center, High School Road ,Vijayawada Rural Mandal,', 50, 110);
         doc.text('Krishna District, Pin code : 521212, Contact:7075606998', 130, 130); 
         doc.text('-------------------------------------------------------------------------------------------------------------------------- ', 0, 145); 
-        doc.text('PAN CARD NUMBER : ',50,192);
-        doc.text('PHONE NUMBER       : ',50,222)
+        doc.text('PAN CARD NUMBER : '+ ration,50,192);
+        doc.text('PHONE NUMBER       : '+ phonenumber ,50,222)
         doc.text('-----------------------------------------------------------------------------------------------------------------', 18, 250);
         doc.text('FULL NAME',65,272);
         doc.text('AADHAR NUMBER',195,272);
@@ -153,7 +157,7 @@ function Search() {
             g = variable;
         })
         doc.text('-----------------------------------------------------------------------------------------------------------------', 18, variable+17);
-        // doc.text("ADDRESS : " + faddress,50,g+40);
+        doc.text("ADDRESS : " +faddress,50,g+40);
         doc.save('demo.pdf')
     }
     const [modal, setModal] = useState(false);

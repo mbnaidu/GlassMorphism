@@ -211,7 +211,7 @@ function Registration() {
                                                         <label for="name" class="form__label">RATION CARD</label>
                                                     </div>
                                                     <div class="form__group">
-                                                        <input type="input" class="form__field" placeholder="Name" id='ration' required value={phone} onChange={event=> setphone(event.target.value)}/>
+                                                        <input type="number" class="form__field" placeholder="Name" id='ration' required value={phone} onChange={event=> setphone(event.target.value)}/>
                                                         <label for="name" class="form__label">PHONE NUMBER</label>
                                                     </div>
                                                     <div class="form__group">
@@ -232,7 +232,7 @@ function Registration() {
                                         </div>
                                         <div className="fluid_button">
                                             <a >
-                                                <Button onClick={()=> {generatePDF();setIsRationPage(rationNumber.length === 16 && phone.length === 10 && address.length >=10 ? false : true)}}><span >ENTER</span></Button>
+                                                <Button onClick={()=> {setIsRationPage(rationNumber.length === 15 && phone.length === 10 && address.length >=10 ? false : true)}}><span >ENTER</span></Button>
                                                 <div class="liquid"></div>
                                             </a>
                                         </div>
